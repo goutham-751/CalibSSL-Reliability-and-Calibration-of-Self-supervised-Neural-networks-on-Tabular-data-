@@ -1,0 +1,128 @@
+# ===========================
+# Virtual Environments
+# ===========================
+venv/
+env/
+.venv/
+.env/
+
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+*.so
+
+# ===========================
+# Datasets (raw & external)
+# ===========================
+Datasets/
+CalibSSL/data/data/
+CalibSSL/data/raw/
+CalibSSL/data/processed/
+
+# ===========================
+# Data files
+# ===========================
+*.csv
+*.xls
+*.xlsx
+*.zip
+*.tar.gz
+*.h5
+*.hdf5
+*.parquet
+*.feather
+*.sqlite
+*.db
+
+# ===========================
+# Model checkpoints & outputs
+# ===========================
+*.pt
+*.pth
+*.pkl
+*.joblib
+*.onnx
+*.safetensors
+CalibSSL/models/
+
+# ===========================
+# Experiment results
+# ===========================
+CalibSSL/results/
+results/
+checkpoints/
+
+# ===========================
+# Generated figures
+# ===========================
+CalibSSL/figures/
+
+# ===========================
+# LaTeX auxiliary files
+# ===========================
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.out
+
+# ===========================
+# Jupyter Notebooks
+# ===========================
+.ipynb_checkpoints/
+notebooks/*.png
+
+# ===========================
+# IDE & Editor
+# ===========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ===========================
+# OS generated files
+# ===========================
+Thumbs.db
+.DS_Store
+desktop.ini
+ehthumbs.db
+Icon?
+
+# ===========================
+# Logs & Experiment Tracking
+# ===========================
+*.log
+wandb/
+runs/
+mlruns/
+lightning_logs/
+tensorboard/
+
+# ===========================
+# Misc
+# ===========================
+.env
+.envrc
+*.bak
+*.tmp
+.cache/
+.pytest_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+.tox/
