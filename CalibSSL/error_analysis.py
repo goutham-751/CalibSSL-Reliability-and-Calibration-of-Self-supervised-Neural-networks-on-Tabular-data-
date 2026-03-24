@@ -61,6 +61,13 @@ def find_failure_cases(df):
         for f in failures:
             print(f"  {f['dataset']:12s} @ {f['label_frac']*100:3.0f}% labels: {f['issue']}")
             print(f"    CalibSSL: {f['calibssl_value']:.4f}, Best ({f['best_model']}): {f['best_value']:.4f}, Gap: {f['gap']:+.4f}\n")
+        
+        # Save to CSV
+        import os
+        os.makedirs('results', exist_ok=True)
+        failures_df = pd.DataFrame(failures)
+        failures_df.to_csv('results/failure_cases.csv', index=False)
+        print(f"✓ Saved results/failure_cases.csv")
     else:
         print("\n✓ CalibSSL performs competitively in all cases!")
 
@@ -75,6 +82,7 @@ def analyze_dataset_characteristics(df):
     print("\nCalibSSL Average Performance per Dataset:")
     print("-"*70)
     
+    dataset_stats = []
     for dataset in sorted(df['dataset'].unique()):
         ds_data = calibssl[calibssl['dataset'] == dataset]
         
@@ -82,6 +90,21 @@ def analyze_dataset_characteristics(df):
         print(f"  Accuracy: {ds_data['accuracy'].mean():.4f} ± {ds_data['accuracy'].std():.4f}")
         print(f"  ECE:      {ds_data['ece'].mean():.4f} ± {ds_data['ece'].std():.4f}")
         print(f"  Brier:    {ds_data['brier'].mean():.4f} ± {ds_data['brier'].std():.4f}")
+        
+        dataset_stats.append({
+            'dataset': dataset,
+            'accuracy_mean': ds_data['accuracy'].mean(),
+            'accuracy_std': ds_data['accuracy'].std(),
+            'ece_mean': ds_data['ece'].mean(),
+            'ece_std': ds_data['ece'].std(),
+            'brier_mean': ds_data['brier'].mean(),
+            'brier_std': ds_data['brier'].std()
+        })
+    
+    import os
+    os.makedirs('results', exist_ok=True)
+    pd.DataFrame(dataset_stats).to_csv('results/calibssl_per_dataset.csv', index=False)
+    print(f"\n✓ Saved results/calibssl_per_dataset.csv")
 
 def confidence_calibration_analysis(df):
     """Analyze relationship between confidence and calibration"""

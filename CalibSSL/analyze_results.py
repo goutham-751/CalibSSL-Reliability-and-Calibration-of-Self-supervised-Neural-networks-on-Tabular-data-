@@ -145,7 +145,7 @@ def section2_statistical_significance(df):
     # Prepare CalibSSL data
     calibssl = df[df['model'] == 'CalibSSL'].sort_values(['dataset', 'label_fraction'])
     
-    baselines = ['Supervised_MLP', 'SSL_MLP', 'XGBoost', 'XGBoost_Calibrated', 'MLP_Calib_Only']
+    baselines = ['Supervised_MLP', 'SSL_MLP', 'XGBoost', 'XGBoost_Calibrated', 'MLP_Calib_Only', 'CalibSSL_TempScaled']
     
     print_subsection("2.1 Paired t-tests: CalibSSL vs Baselines")
     

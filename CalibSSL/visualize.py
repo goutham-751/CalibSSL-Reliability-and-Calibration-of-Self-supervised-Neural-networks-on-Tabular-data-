@@ -51,7 +51,8 @@ COLORS = {
     'MLP_Calib_Only': '#CC79A7',     # Purple
     'XGBoost': '#009E73',            # Green
     'XGBoost_Calibrated': '#0072B2', # Dark blue
-    'Random_Forest': '#D55E00'       # Red-orange
+    'Random_Forest': '#D55E00',      # Red-orange
+    'CalibSSL_TempScaled': '#F0E442' # Yellow
 }
 
 # Model display names
@@ -62,13 +63,14 @@ MODEL_NAMES = {
     'MLP_Calib_Only': 'Calib-Only',
     'XGBoost': 'XGBoost',
     'XGBoost_Calibrated': 'XGBoost-Cal',
-    'Random_Forest': 'Random Forest'
+    'Random_Forest': 'Random Forest',
+    'CalibSSL_TempScaled': 'CalibSSL (TS)'
 }
 
 def load_results(path='results/results.csv'):
     """Load and validate experimental results"""
     df = pd.read_csv(path)
-    print(f"✓ Loaded {len(df)} experiments")
+    print(f"  Loaded {len(df)} experiments")
     print(f"  Datasets: {df['dataset'].nunique()}")
     print(f"  Models: {df['model'].nunique()}")
     print(f"  Label fractions: {sorted(df['label_fraction'].unique())}")
