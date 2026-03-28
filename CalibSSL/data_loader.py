@@ -21,8 +21,8 @@ class TabularDataset:
             return self._load_bank()
         elif self.dataset_name == 'credit':
             return self._load_credit()
-        elif self.dataset_name == 'covertype':
-            return self._load_covertype()
+        elif self.dataset_name == 'jannis':
+            return self._load_jannis()
         elif self.dataset_name == 'diabetes':
             return self._load_diabetes()
         else:
@@ -78,15 +78,19 @@ class TabularDataset:
         
         return X.values, y
     
-    def _load_covertype(self):
-        """Forest Covertype dataset"""
-        df = pd.read_csv('data/data/raw/covertype.csv')
+    def _load_jannis(self):
+        """Jannis dataset (83k rows, tabular benchmark)"""
+        df = pd.read_csv('data/data/raw/jannis.csv')
         
-        # Target is 'class' column from OpenML
+        # Target column is 'class'
         y = self.label_encoder.fit_transform(df['class'])
-        X = df.drop('class', axis=1).values.astype(np.float32)
+        X = df.drop('class', axis=1)
         
-        return X, y
+        # Handle categorical
+        cat_cols = X.select_dtypes(include=['object', 'category']).columns
+        X = pd.get_dummies(X, columns=cat_cols, drop_first=True)
+        
+        return X.values.astype(np.float32), y
     
     def _load_diabetes(self):
         """Pima Indians Diabetes dataset (OpenML)"""

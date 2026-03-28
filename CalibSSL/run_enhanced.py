@@ -185,7 +185,8 @@ def run_enhanced_experiments():
     - Reliability diagram data collection
     """
     
-    datasets = ['adult', 'bank', 'credit', 'covertype', 'diabetes']
+    # Using 'jannis' (83k rows) instead of 'covertype' (581k rows) for local tracking
+    datasets = ['adult', 'bank', 'credit', 'jannis', 'diabetes']
     label_fractions = [0.05, 0.10, 0.15, 0.20, 1.0]
     seeds = [42, 123, 456]
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
